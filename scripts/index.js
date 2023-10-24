@@ -1,4 +1,7 @@
 import { initializeApp } from 'firebase/app'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { test } from './ui';
+
 import {
     getFirestore, collection, onSnapshot,
     addDoc, query, where,
@@ -28,7 +31,7 @@ const chatCol = collection(db, 'chats')
 let initialRoom = 'vue';
 const chatq = query(chatCol, where('room', "==", initialRoom), orderBy('created_at'))
 
-
+console.log('index file')
     // <----- Chats ------>
 
     class Chatroom {
@@ -103,8 +106,9 @@ const chatq = query(chatCol, where('room', "==", initialRoom), orderBy('created_
       }
       render(data){
         const when = data.created_at ?.toDate()
-        ? dateFns.distanceInWordsToNow(data.created_at.toDate(),
-        { addSuffix: true })
+        ? formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true })
+        // dateFns.distanceInWordsToNow(data.created_at.toDate(),
+        // { addSuffix: true })
         : ''
       ;
 
