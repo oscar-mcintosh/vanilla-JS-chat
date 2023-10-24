@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { format, formatDistance, formatRelative, subDays, formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
+import './style.css'; 
 import { test } from './ui';
 
 import {
@@ -107,17 +108,14 @@ console.log('index file')
       render(data){
         const when = data.created_at ?.toDate()
         ? 
-        // formatDistanceToNow(subDays(new Date(), 2), new Date(), { addSuffix: true })
         formatDistanceToNow(data.created_at.toDate(),
-
-        // dateFns.distanceInWordsToNow(data.created_at.toDate(),
         { addSuffix: true })
         : ''
       ;
 
         const html = `
           <li class="list-group-item">
-            <span class="username">${data.username}</span>
+            <span class="username">${data.username} :</span>
             <span class="message">${data.message}</span>
             <div class="time">${when}</div>
           </li>
