@@ -1,7 +1,9 @@
 import { initializeApp } from 'firebase/app'
-import { formatDistanceToNow } from 'date-fns'
-import './style.css'; 
-import { test } from './ui';
+import '../styles.css'
+// import { formatDistanceToNow } from 'date-fns'
+import  ChatUI  from './ui';
+// import  Chatroom  from './chat';
+
 
 import {
     getFirestore, collection, onSnapshot,
@@ -33,6 +35,8 @@ let initialRoom = 'vue';
 const chatq = query(chatCol, where('room', "==", initialRoom), orderBy('created_at'))
 
 console.log('index file')
+// console.log(test)
+
     // <----- Chats ------>
 
     class Chatroom {
@@ -98,33 +102,33 @@ console.log('index file')
 
     // This goes into script UI
     
-    class ChatUI {
-      constructor(list){
-        this.list = list;
-      }
-      clear(){
-        this.list.innerHTML = '';
-      }
-      render(data){
-        const when = data.created_at ?.toDate()
-        ? 
-        formatDistanceToNow(data.created_at.toDate(),
-        { addSuffix: true })
-        : ''
-      ;
+    // class ChatUI {
+    //   constructor(list){
+    //     this.list = list;
+    //   }
+    //   clear(){
+    //     this.list.innerHTML = '';
+    //   }
+    //   render(data){
+    //     const when = data.created_at ?.toDate()
+    //     ? 
+    //     formatDistanceToNow(data.created_at.toDate(),
+    //     { addSuffix: true })
+    //     : ''
+    //   ;
 
-        const html = `
-          <li class="list-group-item">
-            <span class="username">${data.username} :</span>
-            <span class="message">${data.message}</span>
-            <div class="time">${when}</div>
-          </li>
-        `;
-        this.list.innerHTML += html;
-        console.log(html)
-      }
+    //     const html = `
+    //       <li class="list-group-item">
+    //         <span class="username">${data.username} :</span>
+    //         <span class="message">${data.message}</span>
+    //         <div class="time">${when}</div>
+    //       </li>
+    //     `;
+    //     this.list.innerHTML += html;
+    //     console.log(html)
+    //   }
 
-    }
+    // }
   
   
 
