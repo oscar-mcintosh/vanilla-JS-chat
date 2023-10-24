@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import '../styles.css'
-// import { formatDistanceToNow } from 'date-fns'
 import  ChatUI  from './ui';
-// import  Chatroom  from './chat';
 
 
 import {
@@ -24,7 +22,6 @@ import {
 
 
   // init firebase
-// const { initializeApp } = require('firebase/app');
 initializeApp(firebaseConfig);
 
 // init services
@@ -33,9 +30,6 @@ const chatCol = collection(db, 'chats')
 
 let initialRoom = 'vue';
 const chatq = query(chatCol, where('room', "==", initialRoom), orderBy('created_at'))
-
-console.log('index file')
-// console.log(test)
 
     // <----- Chats ------>
 
@@ -89,48 +83,11 @@ console.log('index file')
         updateRoom(room){
             this.room = room;
             console.log('room updated');
-            // if(this.unsub){
-            //     this.unsub();
-            // }
             this.getChats(() => {});
         }
-    }
-    
+    }   
 
 
-    /*========= CHAT UI =============*/
-
-    // This goes into script UI
-    
-    // class ChatUI {
-    //   constructor(list){
-    //     this.list = list;
-    //   }
-    //   clear(){
-    //     this.list.innerHTML = '';
-    //   }
-    //   render(data){
-    //     const when = data.created_at ?.toDate()
-    //     ? 
-    //     formatDistanceToNow(data.created_at.toDate(),
-    //     { addSuffix: true })
-    //     : ''
-    //   ;
-
-    //     const html = `
-    //       <li class="list-group-item">
-    //         <span class="username">${data.username} :</span>
-    //         <span class="message">${data.message}</span>
-    //         <div class="time">${when}</div>
-    //       </li>
-    //     `;
-    //     this.list.innerHTML += html;
-    //     console.log(html)
-    //   }
-
-    // }
-  
-  
 
     /*Goes into script App*/ 
 
@@ -140,7 +97,7 @@ console.log('index file')
     const updateMssg = document.querySelector('.update-mssg');
     const rooms = document.querySelector('.chat-rooms');
 
-    // Initialize the initial room (e.g., 'gaming')
+    // Initialize the initial room (e.g., 'vue')
     const username = localStorage.username ? localStorage.username : 'Unknown author';
 
     const chatUI = new ChatUI(chatList);
@@ -170,7 +127,7 @@ console.log('index file')
 
     // update the chat room
     rooms.addEventListener('click', e => {
-      e.preventDefault(); // Prevent the default behavior of navigating to a new page
+      e.preventDefault(); 
     
       if (e.target.tagName === 'BUTTON') {
         chatUI.clear();
@@ -185,4 +142,3 @@ console.log('index file')
       }
     });
     chatroom.getChats(data => chatUI.render(data));
-    /*Above Goes into script App*/ 
