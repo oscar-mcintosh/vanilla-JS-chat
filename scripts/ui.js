@@ -1,7 +1,6 @@
 
 import { formatDistanceToNow } from 'date-fns'
 
-
     class ChatUI {
       constructor(list){
         this.list = list;
